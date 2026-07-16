@@ -1,0 +1,15 @@
+[로그인 이상 징후 탐지]
+
+위험도: {{ $json.risk_level }}
+
+요약:
+{{ $json.summary }}
+
+확인 필요:
+{{ $json.human_checks }}
+
+권장 대응:
+{{ $json.recommended_actions }}
+
+※ AI 분석 결과 위험도가 높음으로 판단되었습니다.
+해당 IP를 자동 차단하고 관련 계정을 잠금 처리하겠습니다.
