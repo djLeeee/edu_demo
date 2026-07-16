@@ -1,0 +1,45 @@
+{
+  "type": "object",
+  "properties": {
+    "risk_level": {
+      "type": "string",
+      "enum": ["낮음", "중간", "높음"]
+    },
+    "summary": {
+      "type": "string"
+    },
+    "suspicious_findings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "normal_possibilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "human_checks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommended_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "risk_level",
+    "summary",
+    "suspicious_findings",
+    "normal_possibilities",
+    "human_checks",
+    "recommended_actions"
+  ],
+  "additionalProperties": false
+}
