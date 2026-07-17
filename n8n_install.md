@@ -6,16 +6,6 @@ Docker Desktop을 이용해 n8n을 실행하는 방법입니다.
 
 ---
 
-## 공통 준비사항
-
-먼저 Docker Desktop을 설치하고 실행합니다.
-
-- Windows: PowerShell 사용
-- Mac: 터미널 사용
-- n8n 접속 주소: <http://localhost:5678>
-
----
-
 # 1. Windows 설치 방법
 
 ## 1.1 Docker 볼륨 생성
