@@ -2,21 +2,39 @@
 pragma solidity ^0.8.0;
 
 contract SimpleBank {
-    // 컨트랙트 배포자의 주소를 저장하는 상태 변수
-    address public owner;
 
-    // 배포할 때 한 번만 실행
-    constructor() {
-        owner = msg.sender;
-    }
+    // 사용자별 예금 잔액(wei 단위로 저장)
+    mapping(address => uint256) public balances;
 
-    // 호출할 때 ETH를 함께 전송할 수 있는 함수
+    // ETH 입금
     function deposit() public payable {
-        // payable 함수이므로 별도 코드가 없어도 ETH를 받을 수 있음
+        require(msg.value > 0, unicode"ETH를 보내야 합니다.");
+
+        balances[msg.sender] += msg.value;
     }
 
-    // 현재 컨트랙트가 보유한 ETH 잔액 조회
-    function getBalance() public view returns (uint256) {
-        return address(this).balance;
+    // 내 잔액 조회(ETH 단위)
+    function getMyBalance() public view returns (uint256) {
+        return balances[msg.sender] / 1 ether;
+    }
+
+    // 은행 전체 잔액 조회(ETH 단위)
+    function getBankBalance() public view returns (uint256) {
+        return address(this).balance / 1 ether;
+    }
+
+    // ETH 단위로 출금
+    function withdraw(uint256 ethAmount) public {
+
+        uint256 amount = ethAmount * 1 ether;
+
+        require(
+            balances[msg.sender] >= amount,
+            unicode"잔액이 부족합니다."
+        );
+
+        balances[msg.sender] -= amount;
+
+        payable(msg.sender).transfer(amount);
     }
 }
